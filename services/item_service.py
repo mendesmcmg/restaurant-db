@@ -1,12 +1,15 @@
 class ItemService:
-  def __init__(self, itemRepostory):
-    self.itemRepostory = itemRepostory
+  def __init__(self, itemRepository):
+    self.itemRepository = itemRepository
 
   def createItem(self, item):
-    self.itemRepostory.createItem(item)
-
-  def updatePrice(self, name, price):
-    self.itemRepostory.updatePrice(name, price)
+    self.itemRepository.createItem(item)
 
   def getAllItems(self):
-    return self.itemRepostory.getAllItems()
+    return self.itemRepository.getAllItems()
+
+  def updatePrice(self, name, price):
+    self.itemRepository.updatePrice(name, price)
+
+  def deleteItem(self, name):
+    self.itemRepository.deleteItem(name)
