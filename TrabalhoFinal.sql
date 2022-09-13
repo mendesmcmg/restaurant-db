@@ -3,16 +3,16 @@ create database trabalhofinal;
 use trabalhofinal;
 
 CREATE TABLE Estoque(
-	codEstoque int primary key,
+	codEstoque SERIAL primary key UNIQUE,
     nome varchar(50)
 );
 
 CREATE TABLE Restaurante(
-    codRest int primary key,
+    codRest SERIAL primary key UNIQUE,
     nome varchar(45),
     telefone varchar(12),
     endereco varchar(100),
-    foto blob,
+    foto bytea,
     Estoque_codEstoque int
 );
 
@@ -20,7 +20,7 @@ ALTER TABLE Restaurante
 	ADD FOREIGN KEY (Estoque_codEstoque) REFERENCES Estoque(codEstoque);
 
 CREATE TABLE Funcionario(
-	codFunc int primary key,
+	codFunc SERIAL primary key UNIQUE,
     cargo varchar(45),
     nome varchar(45),
     salario int,
@@ -31,7 +31,7 @@ ALTER TABLE Funcionario
 	ADD FOREIGN KEY (Restaurante_codRest) REFERENCES Restaurante(codRest);
 
 CREATE TABLE Mesa(
-	codMesa int primary key,
+	codMesa SERIAL primary key UNIQUE,
     Restaurante_codRest int,
     Funcionario_codFunc int
 );
@@ -42,7 +42,7 @@ ALTER TABLE Mesa
     ADD FOREIGN KEY (Funcionario_codFunc) REFERENCES Funcionario(codFunc);
 
 CREATE TABLE Conta(
-	codConta int primary key,
+	codConta SERIAL primary key UNIQUE,
     pagamento boolean,
     valor float,
     Mesa_codMesa int
@@ -52,7 +52,7 @@ ALTER TABLE Conta
 	ADD FOREIGN KEY (Mesa_codMesa) REFERENCES Mesa(codMesa);
 
 CREATE TABLE Prato(
-	codPrato int primary key,
+	codPrato SERIAL primary key UNIQUE,
     nome varchar(45),
     tipo varchar(45),
     valor float
@@ -76,7 +76,7 @@ CREATE TABLE Restaurante_Prato (
 );
 
 CREATE TABLE Categoria (
-	codCat int primary key,
+	codCat SERIAL primary key UNIQUE,
     nome varchar(45)
 );
 
@@ -89,7 +89,7 @@ CREATE TABLE Restaurante_Categoria (
 );
 
 CREATE TABLE Fornecedor(
-	codForn int primary key,
+	codForn SERIAL primary key UNIQUE,
     nome varchar(45),
     telefone varchar(45),
     produto varchar(45),
@@ -100,7 +100,7 @@ ALTER TABLE Fornecedor
 	ADD FOREIGN KEY (Restaurante_codRest) REFERENCES  Restaurante(codRest);
     
 CREATE TABLE Produto(
-	codProd int primary key,
+	codProd SERIAL primary key UNIQUE,
     nome varchar(45)
 );
 
