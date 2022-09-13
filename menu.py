@@ -1,18 +1,13 @@
 import os
-from unicodedata import category
-from entities.item import Item
 from entities.category import Category
 from entities.inventory import Inventory
-
-from services.item_service import ItemService
-from services.category_service import CategoryService
-from services.inventory_service import InventoryService
-
+from entities.restaurant import Restaurant
 class Menu:
-  def __init__(self, itemService, categoryService, inventoryService):
+  def __init__(self, itemService, categoryService, inventoryService, restaurantService):
     self.itemService = itemService
     self.categoryService = categoryService
     self.inventoryService = inventoryService
+    self.restaurantService = restaurantService
 
   def run(self):
     while True:
@@ -21,7 +16,7 @@ class Menu:
       print("| Seja bem-vindo ao sistema da cadeia de restaurantes Comidinhas |")
       print("------------------------------------------------------------------\n")
 
-      action = int(input("Com o que deseja trabalhar?\n1 - Categoria\n2 - Estoque\n3 - Sair\n"))
+      action = int(input("Com o que deseja trabalhar?\n1 - Categoria\n2 - Estoque\n3 - Restaurante \n4 - Sair\n"))
 
       match action:
         case 1:
@@ -29,8 +24,9 @@ class Menu:
         case 2:
           self.runInventory()
         case 3:
+          self.runRestaurant()
+        case 4:
           break
-
 
   def runCategory(self):
     while True:
@@ -141,3 +137,66 @@ class Menu:
     self.inventoryService.deleteInventory(name)
     input("Estoque deletado\nAperte ENTER\n")
 
+  def runRestaurant(self):
+    while True:
+      os.system('cls' if os.name == 'nt' else 'clear')
+      print("RESTAURANTE")
+      print("O que deseja fazer?")
+      print("1 - Criar um restaurante")
+      print("2 - Ver todos os restaurantes")
+      print("3 - Atualizar restaurante")
+      print("4 - Deletar um restaurante")
+      print("5 - Sair")
+      restaurant = int(input())
+
+      match restaurant:
+        case 1:
+          self.createRestaurant()
+          self.indexRestaurant()
+        case 2:
+          self.indexRestaurant()
+        case 3:
+          self.updateName()
+          self.indexRestaurant()
+        case 4:
+          self.deleteRestaurant()
+          self.indexRestaurant()
+        case 5:
+          break
+
+  def createRestaurant(self):
+    name = input("Digite o nome do restaurante\n")
+    telephone = input("Digite o telefone do restaurante\n")
+    address = input("Digite o endereço do restaurante\n")
+    restaurant = Restaurant(name, telephone, address)
+    self.restaurantService.createRestaurant(restaurant)
+    input("Restaurante Criado\nAperte ENTER\n")
+
+  def indexRestaurant(self):
+    restaurants = self.restaurantService.getAllRestaurants()
+    for restaurant in restaurants:
+      print("nome: {} \ntelefone: {} \nendereço: {} \n------------".format(restaurant.getName(), restaurant.getTelephone(), restaurant.getAddress()))
+    input("Aperte ENTER\n")
+
+  def updateName(self):
+    name = input("Digite o nome original\n")
+    new_name = input("Digite o novo nome\n")
+    self.restaurantService.updateName(new_name, name)
+    input("Nome atualizado\nAperte ENTER\n")
+
+  def updateTelephone(self):
+    name = input("Digite o nome do restaurante\n")
+    telephone = input("Digite o novo telefone\n")
+    self.restaurantService.updateTelephone(telephone, name)
+    input("Telefone atualizado\nAperte ENTER\n")
+
+  def updateAddress(self):
+    name = input("Digite o nome do restaurante\n")
+    address = input("Digite o novo endereço\n")
+    self.restaurantService.updateAddress(address, name)
+    input("Endereço atualizado\nAperte ENTER\n")
+
+  def deleteRestaurant(self):
+    name = input("Digite o nome\n")
+    self.restaurantService.deleteRestaurant(name)
+    input("Restaurante deletado\nAperte ENTER\n")
