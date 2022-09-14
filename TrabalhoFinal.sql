@@ -58,7 +58,6 @@ CREATE TABLE Prato(
     valor float
 );
 
-
 CREATE TABLE Conta_Prato (
     Conta_codConta int,
     Prato_codPrato int,
