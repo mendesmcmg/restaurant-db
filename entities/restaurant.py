@@ -1,9 +1,10 @@
 class Restaurant:
-  def __init__(self, name, telephone, address, photo=None):
+  def __init__(self, name, telephone, address, photo=None, codRestaurante=None):
     self._name = name
     self._telephone = telephone
     self._address = address
     self._photo = photo
+    self._codRestaurante = codRestaurante
 
   def getName(self):
     return self._name
@@ -16,6 +17,9 @@ class Restaurant:
 
   def getPhoto(self):
     return self._photo
+
+  def getCodRestaurante(self):
+    return self._codRestaurante
 
   def setTelephone(self, telephone):
     self._telephone = telephone

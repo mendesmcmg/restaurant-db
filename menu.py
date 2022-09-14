@@ -45,7 +45,8 @@ class Menu:
       print("2 - Ver todas as categorias de restaurantes")
       print("3 - Atualizar categoria de restaurante")
       print("4 - Deletar uma categoria de restaurante")
-      print("5 - Sair")
+      print("5 - Adicionar um restaurante a uma categoria")
+      print("6 - Sair")
       category = int(input())
 
       match category:
@@ -61,6 +62,9 @@ class Menu:
           self.deleteCategory()
           self.indexCategory()
         case 5:
+          self.addRestaurantToCategory()
+          self.indexCategory()
+        case 6:
           break
   
   def createCategory(self):
@@ -85,6 +89,14 @@ class Menu:
     name = input("Digite o nome\n")
     self.categoryService.deleteCategory(name)
     input("Categoria deletada\nAperte ENTER\n")
+
+  def addRestaurantToCategory(self):
+    name = input("Digite o nome da categoria\n")
+    restaurant_name = input("Digite o nome do restaurante que quer adicionar\n")
+    restaurant_telephone = input("Digite o telefone do restaurante que quer adicionar\n")
+    restaurant_address = input("Digite o endereço do restaurante que quer adicionar\n")
+    self.categoryService.addRestaurantToCategory(name, restaurant_name, restaurant_telephone, restaurant_address)
+    input("Restaurante adicionado\nAperte ENTER\n")
     
 
   def runInventory(self):

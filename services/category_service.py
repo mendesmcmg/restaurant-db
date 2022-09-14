@@ -13,3 +13,6 @@ class CategoryService:
 
   def deleteCategory(self, name):
     self.categoryRepository.deleteCategory(name)
+
+  def addRestaurantToCategory(self, name, restaurant_name, restaurant_telephone, restaurant_address):
+    self.categoryRepository.addRestaurantToCategory(name, restaurant_name, restaurant_telephone, restaurant_address)
