@@ -282,8 +282,9 @@ class Menu:
     name = input("Digite o nome do funcionário\n")
     function = input("Digite o cargo do funcionário\n")
     salary = input("Digite o salário do funcionário\n")
-    employee = Employee(name, function, salary)
-    self.employeeService.createEmployee(employee)
+    rest_name = input("Digite o nome do restaurante onde ele irá trabalhar\n")
+    employee = Employee(name, function, salary, rest_name)
+    self.employeeService.createEmployee(employee, rest_name)
     input("Funcionário Criado\nAperte ENTER\n")
 
   def indexEmployee(self):

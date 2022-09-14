@@ -29,3 +29,6 @@ class Employee:
 
   def setSalary(self, salary):
     self._salary = salary
+
+  def setCodRest(self, codRest):
+    self._cod_rest = codRest

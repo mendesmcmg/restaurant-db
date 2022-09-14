@@ -2,8 +2,8 @@ class EmployeeService:
   def __init__(self, employeeRepository):
     self.employeeRepository = employeeRepository
 
-  def createEmployee(self, employee):
-    self.employeeRepository.createEmployee(employee)
+  def createEmployee(self, employee, restaurant_name):
+    self.employeeRepository.createEmployee(employee, restaurant_name)
 
   def getAllEmployees(self):
     return self.employeeRepository.getAllEmployees()
