@@ -26,4 +26,7 @@ class RestaurantService:
   def deleteRestaurant(self, name):
       self.restaurant_repository.deleteRestaurant(name)
 
+  def addEmployeeToRestaurant(self, name, employee_name, employee_function, employee_salary):
+      self.restaurant_repository.addEmployeeToRestaurant(name, employee_name, employee_function, employee_salary)
+
 

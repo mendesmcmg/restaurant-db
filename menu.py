@@ -171,7 +171,8 @@ class Menu:
       print("2 - Ver todos os restaurantes")
       print("3 - Atualizar restaurante")
       print("4 - Deletar um restaurante")
-      print("5 - Sair")
+      print("5 - Adicionar um funcionário a um restaurante")
+      print("6 - Sair")
       restaurant = int(input())
 
       match restaurant:
@@ -187,6 +188,8 @@ class Menu:
           self.deleteRestaurant()
           self.indexRestaurant()
         case 5:
+          self.addEmployeeToRestaurant()
+        case 6:
           break
 
   def createRestaurant(self):
@@ -225,6 +228,14 @@ class Menu:
     name = input("Digite o nome\n")
     self.restaurantService.deleteRestaurant(name)
     input("Restaurante deletado\nAperte ENTER\n")
+
+  def addEmployeeToRestaurant(self):
+    restaurant_name = input("Digite o nome do restaurante\n")
+    employee_name = input("Digite o nome do funcionário\n")
+    employee_function = input("Digite o cargo do funcionário\n")
+    employee_salary = input("Digite o salário do funcionário\n")
+    self.restaurantService.addEmployeeToRestaurant(restaurant_name, employee_name, employee_function, employee_salary)
+    input("Funcionário adicionado\nAperte ENTER\n")
 
   def runEmployee(self):
     while True:
