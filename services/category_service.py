@@ -16,3 +16,6 @@ class CategoryService:
 
   def addRestaurantToCategory(self, name, restaurant_name, restaurant_telephone, restaurant_address):
     self.categoryRepository.addRestaurantToCategory(name, restaurant_name, restaurant_telephone, restaurant_address)
+
+  def showRestaurantsFromCategory(self, name):
+    return self.categoryRepository.showRestaurantsFromCategory(name)

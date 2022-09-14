@@ -44,3 +44,9 @@ class CategoryRepository:
     self.database.getCursor().execute(create_restaurant_category, (rest_id, category_id))
     self.database.commit()
 
+  def showRestaurantsFromCategory(self, name):
+    query = "SELECT restaurante.nome, restaurante.telefone, restaurante.endereco FROM restaurante INNER JOIN restaurante_categoria ON restaurante.codrest = restaurante_categoria.restaurante_codrest INNER JOIN categoria ON restaurante_categoria.categoria_codcat = categoria.codcat WHERE categoria.nome = %s;"
+    self.database.getCursor().execute(query, (name,))
+    result = self.database.getCursor().fetchall()
+    return result
+
