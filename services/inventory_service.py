@@ -13,3 +13,6 @@ class InventoryService:
 
   def deleteInventory(self, name):
     self.inventoryRepository.deleteInventory(name)
+
+  def addInventoryToRestaurant(self, restaurant_name, inventory_name):
+    self.inventoryRepository.addInventoryToRestaurant(restaurant_name, inventory_name)

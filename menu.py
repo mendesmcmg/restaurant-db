@@ -140,9 +140,11 @@ class Menu:
           break
 
   def createInventory(self):
-    name = input("Digite o nome do estoque\n")
-    inventory = Inventory(name)
+    inventory_name = input("Digite o nome do estoque\n")
+    inventory = Inventory(inventory_name)
+    restaurant_name = input("Digite o nome do restaurante ao qual esse estoque pertence\n")
     self.inventoryService.createInventory(inventory)
+    self.inventoryService.addInventoryToRestaurant(restaurant_name, inventory_name)
     input("Estoque Criado\nAperte ENTER\n")
 
   def indexInventory(self):
