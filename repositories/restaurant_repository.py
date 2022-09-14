@@ -62,3 +62,12 @@ class RestaurantRepository:
     query = "INSERT INTO funcionario (nome, cargo, salario, restaurante_codrest) VALUES(%s, %s, %s, %s);"
     self.database.getCursor().execute(query, (employee_name, employee_function, employee_salary, rest_id))
     self.database.commit()
+
+  def showEmployeesFromRestaurant(self, name):
+    get_rest_id = "SELECT codrest FROM restaurante WHERE nome = %s;"
+    self.database.getCursor().execute(get_rest_id, (name,))
+    rest_id = self.database.getCursor().fetchone()[0]
+    query = "SELECT * FROM funcionario WHERE restaurante_codrest = %s;"
+    self.database.getCursor().execute(query, (rest_id,))
+    result = self.database.getCursor().fetchall()
+    return result

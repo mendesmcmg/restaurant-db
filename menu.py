@@ -172,7 +172,8 @@ class Menu:
       print("3 - Atualizar restaurante")
       print("4 - Deletar um restaurante")
       print("5 - Adicionar um funcionário a um restaurante")
-      print("6 - Sair")
+      print("6 - Ver todos os funcionários de um restaurante")
+      print("7 - Sair")
       restaurant = int(input())
 
       match restaurant:
@@ -190,6 +191,8 @@ class Menu:
         case 5:
           self.addEmployeeToRestaurant()
         case 6:
+          self.showEmployeesFromRestaurant()
+        case 7:
           break
 
   def createRestaurant(self):
@@ -236,6 +239,17 @@ class Menu:
     employee_salary = input("Digite o salário do funcionário\n")
     self.restaurantService.addEmployeeToRestaurant(restaurant_name, employee_name, employee_function, employee_salary)
     input("Funcionário adicionado\nAperte ENTER\n")
+
+  def showEmployeesFromRestaurant(self):
+    restaurant_name = input("Digite o nome do restaurante\n")
+    employees = self.restaurantService.showEmployeesFromRestaurant(restaurant_name)
+    if not employees:
+      print("Nenhum funcionário cadastrado")
+    else:
+      print("\n---FUNCIONARIOS DO RESTAURANTE {}---".format(restaurant_name))
+      for employee in employees:
+        print("\nnome: {} \ncargo: {} \nsalário: {} \n------------".format(employee[1], employee[2], employee[3]))
+    input("Aperte ENTER\n")
 
   def runEmployee(self):
     while True:
