@@ -17,4 +17,5 @@ O trabalho consiste em criar um banco de dados para uma cadeia de restaurantes. 
 - Fornecedor
 - Estoque
 - Produto
+
 # restaurant-db
